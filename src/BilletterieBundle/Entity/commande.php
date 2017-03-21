@@ -22,6 +22,11 @@ class commande
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="BilletterieBundle\Entity\billet", mappedBy="order", cascade={"persist"})
+     */
+    private $billets;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_visite", type="date")
@@ -185,6 +190,22 @@ class commande
     public function getDateCommande()
     {
         return $this->dateCommande;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillets()
+    {
+        return $this->billets;
+    }
+
+    /**
+     * @param mixed $billet
+     */
+    public function setBillets($billets)
+    {
+        $this->billet = $billets;
     }
 }
 

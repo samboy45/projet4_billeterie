@@ -22,11 +22,10 @@ class billet
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_commande", type="integer")
+     * @ORM\ManyToOne(targetEntity="BilletterieBundle\Entity\commande", inversedBy="billets")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idCommande;
+    private $commande;
 
     /**
      * @var string
@@ -81,29 +80,6 @@ class billet
         return $this->id;
     }
 
-    /**
-     * Set idCommande
-     *
-     * @param integer $idCommande
-     *
-     * @return billet
-     */
-    public function setIdCommande($idCommande)
-    {
-        $this->idCommande = $idCommande;
-
-        return $this;
-    }
-
-    /**
-     * Get idCommande
-     *
-     * @return int
-     */
-    public function getIdCommande()
-    {
-        return $this->idCommande;
-    }
 
     /**
      * Set nomVisiteur
@@ -247,6 +223,22 @@ class billet
     public function getPrixBillet()
     {
         return $this->prixBillet;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommande()
+    {
+        return $this->commande;
+    }
+
+    /**
+     * @param mixed $commande
+     */
+    public function setCommande($commande)
+    {
+        $this->commande = $commande;
     }
 }
 
