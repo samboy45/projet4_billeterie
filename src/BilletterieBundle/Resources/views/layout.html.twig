@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Billeterie musée du Louvre{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('bundles/billetterie/css/billetterie.css') }}">
+    {% endblock %}
+</head>
+
+<body style="background:url('{{ asset('bundles/billetterie/images/louvre-gris.jpeg') }}');">
+<div class="container">
+    <header id="header" class="clearfix">
+        <div id="header_top" class="clearfix">
+            <div id="backlink">
+                <a href="" title="Revenir sur le site web du musée">Retour site web<span class="glyphicon glyphicon-play"></span></a>
+            </div>
+            <a href="{{ path('home') }}" title="Billeterie musée du Louvre"><img src="{{ asset('bundles/billetterie/images/logo.jpg') }}" class="logo" alt="Logo billeterie musée du Louvre" /></a>
+            <h1>Billeterie officielle</h1>
+        </div>
+        <div id="header_bottom" class="clearfix">
+            <span>Musée du Louvre</span>
+        </div>
+    </header>
+
+    <section id="page" class="clearfix">
+        <div id="top_column" class="col-sm-12">
+            <div>
+                <h2>{% block top_column_h2 %}{% endblock %}</h2>
+                <p>{% block top_column_p %}{% endblock %}</p>
+            </div>
+        </div>
+        <div id="columns" class="clearfix">
+            <div id="center_column" class="col-sm-9">
+                <div class="row">
+                    {% block center_column %}{% endblock %}
+                </div>
+            </div>
+            <div id="right_column" class="col-sm-3">
+                <div class="row">
+                    <div id="right_column_top">
+                        <p class="title">Informations Pratiques</p>
+                        <p>Museée du Louvre</p>
+                        <p>75058 Paris CEDEX 01</p>
+                        <p> France</p>
+                        <br>
+                        <p>Horaires</p>
+                        <p>Ouvert tous les jours de 9h à 18h sauf le mardi.
+                            Nocturnes jusqu'à 21h45 le mercredi et le vendredi.
+                            L'évacuation des salles commence une demie heure avant la fermeture.</p>
+                        <br>
+                        <p>Jours de Fermeture :</p>
+                        <p>Les mardis, le 1er janvier, le 1er mai et le 25 décembre.</p>
+                        <br>
+                        <p>Tout objet d’une taille supérieure à 55 x 35 x 20 cm ne sera pas accepté à l’entrée de la Pyramide.</p>
+                    </div>
+                    <div id="right_column_bottom">
+                        <p>La vie du Louvre en direct</p>
+                        <br>
+                        <a href="" target="_blank" title="Visiter la page du musée sur Facebook"><img src="{{ asset('bundles/billetterie/images/facebook.png') }}" alt="Icone Facebook" /></a>
+                        <a href="" target="_blank" title="Visiter la page du musée sur Twitter"><img src="{{ asset('bundles/billetterie/images/twitter.png') }}" alt="Icone Twitter" /></a>
+                        <a href="" target="_blank" title="Visiter la page du musée sur Youtube"><img src="{{ asset('bundles/billetterie/images/youtube.png') }}" alt="Icone Youtube" /></a>
+                        <a href="" target="_blank" title="Visiter la page du musée sur Instagram"><img src="{{ asset('bundles/billetterie/images/instagram.png') }}" alt="Icone Instagram" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="clearfix">
+        <div id="footer_top" class="clearfix">
+            <div id="footer_top_center" class="col-sm-8">
+                <span>Paiement 100% sécurisé</span>
+                <span><img src="{{ asset('bundles/billetterie/images/payment.png') }}" alt="Logo moyens de paiement 100% sécurisés" /></span>
+                <span>3D Secure</span>
+            </div>
+        </div>
+        <div id="footer_bottom" class="clearfix">
+            <div id="footer_bottom_right" class="col-sm-7">
+                <a href="{{ path('info') }}" title="Informations pratiques">Infos pratiques</a>
+                <a href="{{ path('contact') }}" title="Informations de contact">Contactez-nous</a>
+                <a href="{{ path('cgv') }}" title="Conditions générales de vente">CGV</a>
+            </div>
+            <div id="footer_bottom_left" class="col-sm-5">
+                <span>Musée du Louvre ©  {{ "now"|date('Y') }} Tous droits réservés</span>
+            </div>
+        </div>
+    </footer>
+</div>
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+{% endblock %}
+</body>
+</html>

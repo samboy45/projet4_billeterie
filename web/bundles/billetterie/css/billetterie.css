@@ -1,0 +1,194 @@
+/* ----------------------------------------
+   GLOBAL STYLES
+   ---------------------------------------- */
+body { background-size: cover }
+a {
+    -webkit-transition:all 0.2s linear;
+    transition:all 0.2s linear;
+    color:#c82d00;
+}
+a:hover, a:focus, a:active {
+    color:#7e1d01;
+    text-decoration:none;
+    outline:0;
+}
+.link {
+    -webkit-transition:all 0.2s linear;
+    transition:all 0.2s linear;
+    color:#c82d00;
+    cursor:pointer;
+}
+.link:hover { color:#7e1d01; }
+.btn:focus { outline:0; }
+p { margin:0; }
+h1, h2, h3, h4, h5, h6 {
+    font-family:Georgia, sans-serif;
+    margin:0;
+}
+.bold { font-weight:700; }
+.content { margin:20px; }
+.content a, .content .link { font-weight:700; }
+.content ul { margin-top:10px; }
+.cgv p, .cgv ul { font-size:12px; }
+@media screen and (max-width:800px) {
+    .space { margin-bottom:10px; }
+}
+
+/* ----------------------------------------
+   HEADER
+   ---------------------------------------- */
+#header_top {
+    background:#222;
+    color:#fff;
+}
+#header_top .logo {
+    float:left;
+    margin:15px 8px ;
+}
+#header_top h1 {
+    font-size:30px;
+    margin:25px 0 0;
+}
+#backlink {
+    background:#c82d00 url("../images/backlink_bg.png") no-repeat;
+    float:right;
+    padding:2px 2px 2px 30px;
+}
+#backlink a { color:#fff; }
+#backlink a:hover,a:focus, a:active { opacity:0.6; }
+#backlink span {
+    float:right;
+    font-size:2px;
+    margin:5px 5px 0 10px;
+}
+#header_bottom {
+    background:#c82d00;
+    padding:5px 10px;
+}
+#header_bottom span {
+    background:url(../images/pyramid.png) no-repeat;
+    color:#fff;
+    padding-left:30px;
+}
+@media screen and (max-width:800px) {
+    #header_top h1 {
+        font-size:25px;
+        margin:30px 0 0;
+    }
+}
+
+
+/* ----------------------------------------
+   PAGE
+   ---------------------------------------- */
+#page { background:#fff; }
+#top_column { border-bottom:3px solid #222;padding:20px 5px; }
+#top_column h2{font-size:25px;}
+#columns { position:relative;}
+#center_column {
+    background:#fff;
+    min-height:748px;
+}
+#center_column .title {
+    background:#444;
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:20px;
+    padding:5px 20px;
+}
+#center_column .well .title {
+    background:none;
+    color:inherit;
+    padding:0;
+}
+#right_column {
+    background:#222;
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    color:#fff;
+    font-size:12px;
+}
+#right_column .title {
+    font-size:16px;
+    font-weight:700;
+    margin-bottom: 5%;
+
+}
+#right_column_top {
+    background:#c82d00;
+    padding:15px 20px 50px;
+}
+#right_column_bottom { padding-top: 50%;}
+#right_column_bottom {text-align: center}
+#right_column_bottom a{ margin:0 5px; }
+
+@media screen and (max-width:1200px) {
+    #center_column { min-height:834px; }
+}
+@media (max-width:992px) {
+    #center_column { min-height:863px; }
+    #right_column .title {
+        font-size:14px;
+        margin:10px 0 2px;
+    }
+    #right_column_top, #right_column_bottom { padding:10px 20px 20px; }
+}
+@media (max-width:800px) {
+    #top_column h2 { font-size:20px; }
+    #right_column { position:static; }
+}
+
+/* ----------------------------------------
+   FOOTER
+   ---------------------------------------- */
+#footer_top {
+    background:#fff;
+    border-top:3px solid #222;
+    color:#4e4e4e;
+    padding:20px;
+}
+#footer_top_center span {
+    display:inline-block;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    margin:5px;
+}
+#footer_top_center{text-align: right}
+
+#footer_bottom {
+    background:#222;
+    color:#fff;
+    font-size:12px;
+    padding:20px;
+}
+#footer_bottom_left span { margin:5px; }
+#footer_bottom_right {
+    float:right;
+    text-align:right;
+}
+#footer_bottom_right a {
+    border-right:1px solid #444;
+    color:#fff;
+    text-transform:uppercase;
+    padding:0 15px;
+}
+#footer_bottom_right a:last-child {
+    border:0;
+    padding-right:10px;
+}
+
+#footer_bottom_right a:hover, #footer_bottom_right a:focus, #footer_bottom_right a:active { opacity:0.6; }
+@media (max-width:800px) {
+    #footer_top_right, #footer_bottom_left, #footer_bottom_right { text-align:center; }
+    #footer_top_center { margin-bottom:10px;}
+    #footer_bottom_right {
+        float:none;
+        margin-bottom:20px;
+    }
+    #footer_bottom_right a:last-child { padding-right:15px; }
+}
+
