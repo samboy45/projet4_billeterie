@@ -2,6 +2,8 @@
 
 namespace BilletterieBundle\Controller;
 
+use BilletterieBundle\Entity\commande;
+use BilletterieBundle\Form\commandeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -12,7 +14,12 @@ class BilletterieController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BilletterieBundle:Order:index.html.twig');
+        $commande = new  commande();
+        $form =$this->createForm(commandeType::class, $commande);
+
+        return $this->render('BilletterieBundle:Order:index.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**

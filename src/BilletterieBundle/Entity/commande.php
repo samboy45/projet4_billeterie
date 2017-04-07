@@ -61,6 +61,8 @@ class commande
      */
     private $dateCommande;
 
+    private $prixTotale;
+
 
     /**
      * Get id
@@ -206,6 +208,22 @@ class commande
     public function setBillets($billets)
     {
         $this->billet = $billets;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrixTotale()
+    {
+        return $this->prixTotale;
+    }
+
+    /**
+     * @param mixed $prixTotale
+     */
+    public function setPrixTotale($prixTotale)
+    {
+        $this->prixTotale = $prixTotale;
     }
 }
 

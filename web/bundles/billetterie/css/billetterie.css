@@ -82,7 +82,8 @@ h1, h2, h3, h4, h5, h6 {
    PAGE
    ---------------------------------------- */
 #page { background:#fff; }
-#top_column { border-bottom:3px solid #222;padding:20px 5px; }
+#top_column { border-bottom:3px solid #222; }
+#top_column div {padding:20px 5px;}
 #top_column h2{font-size:25px;}
 #columns { position:relative;}
 #center_column {
@@ -138,7 +139,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (max-width:800px) {
     #top_column h2 { font-size:20px; }
-    #right_column { position:static; }
+    #right_column { position:static;}
 }
 
 /* ----------------------------------------
@@ -192,3 +193,46 @@ h1, h2, h3, h4, h5, h6 {
     #footer_bottom_right a:last-child { padding-right:15px; }
 }
 
+
+/* ----------------------------------------
+   ORDER FORM
+   ---------------------------------------- */
+#add_billet {
+    margin-bottom: 20px;
+    color: #23C0D7;
+    background-color: #fff;
+    border: 1px solid #23C0D7;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#add_billet:hover {
+    color: #fff;
+    background-color: #23C0D7;
+    border: 1px solid #fff;
+}
+
+
+.form-group {
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom:20px;
+}
+.form-control {
+    width:auto;
+    max-width:170px;
+}
+
+.help-block {
+    clear:left;
+    margin:0;
+}
+
+#billets {
+    margin-left:20px;
+    margin-right:20px;
+}
+.control-label {
+    font-size:12px;
+    text-align:left;
+}
