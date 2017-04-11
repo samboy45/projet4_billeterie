@@ -3,6 +3,7 @@
 namespace BilletterieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * billet
@@ -31,6 +32,8 @@ class billet
      * @var string
      *
      * @ORM\Column(name="nom_visiteur", type="string", length=255)
+     ** @Assert\Type(type="string", message="Nom invalide")
+     * @Assert\NotBlank(message="Veuillez compléter ce champ")
      */
     private $nomVisiteur;
 
@@ -38,6 +41,8 @@ class billet
      * @var string
      *
      * @ORM\Column(name="prenom_visiteur", type="string", length=255)
+     * @Assert\Type(type="string", message="Prénom invalide")
+     * @Assert\NotBlank(message="Veuillez compléter ce champ")
      */
     private $prenomVisiteur;
 
@@ -45,6 +50,7 @@ class billet
      * @var string
      *
      * @ORM\Column(name="visiteur_pays", type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez sélectionner un pays dans la liste")
      */
     private $visiteurPays;
 
@@ -52,6 +58,7 @@ class billet
      * @var \DateTime
      *
      * @ORM\Column(name="visiteur_date_naissance", type="date")
+     * @Assert\NotBlank(message="Veuillez renseigner une date de naissance")
      */
     private $visiteurDateNaissance;
 

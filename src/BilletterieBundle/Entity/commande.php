@@ -3,6 +3,7 @@
 namespace BilletterieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * commande
@@ -23,6 +24,7 @@ class commande
 
     /**
      * @ORM\OneToMany(targetEntity="BilletterieBundle\Entity\billet", mappedBy="order", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $billets;
 
@@ -30,6 +32,8 @@ class commande
      * @var \DateTime
      *
      * @ORM\Column(name="date_visite", type="date")
+     * @Assert\Date(message="Date invalide")
+     * @Assert\NotBlank(message="Veuillez sélectionner une date de visite")
      */
     private $dateVisite;
 
@@ -58,6 +62,8 @@ class commande
      * @var \DateTime
      *
      * @ORM\Column(name="date_commande", type="date")
+     * @Assert\Email(message="Adresse E-mail invalide")
+     * @Assert\NotBlank(message="Veuillez renseigner votre adresse E-mail")
      */
     private $dateCommande;
 
