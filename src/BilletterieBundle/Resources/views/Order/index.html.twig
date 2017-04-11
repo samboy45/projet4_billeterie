@@ -30,13 +30,11 @@
         </div>
     </div>
     <div class="title">3. Choisissez le nombre de billet</div>
-    <div class="billets">
+    <div class="well billets">
         {{ form_label(form.billets) }}
-
         {{ form_widget(form.billets) }}
-        <p class="help-block">Sur présentation d'un justificatif à l'entrée</p>
-        <a href="#" id="add_billet" class="btn btn-default">Ajouter un billet</a>
     </div>
+    <a href="#" id="add_billet" class="btn btn-default">Ajouter un billet</a>
     <div class="title">4. Indiquez votre adresse e-mail</div>
 
     {{ form_row(form.email) }}
@@ -50,3 +48,8 @@
     {{ form_rest(form) }}
     {{ form_end(form) }}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/billetterie/js/billetterie.js') }}"></script>
+{% endblock  %}

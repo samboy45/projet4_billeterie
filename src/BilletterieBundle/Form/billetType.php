@@ -37,7 +37,7 @@ class billetType extends AbstractType
                 )
             ))
             ->add('tarifReduit', CheckboxType::class, array(
-                'label' => 'Tarif réduit',
+                'label' => 'Tarif réduit ( Sur présentaion d\'un justificatif à l\'entrée )',
                 'required' => false
             ));
     }

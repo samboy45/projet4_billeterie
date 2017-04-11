@@ -228,11 +228,13 @@ h1, h2, h3, h4, h5, h6 {
     margin:0;
 }
 
-#billets {
-    margin-left:20px;
-    margin-right:20px;
-}
+
 .control-label {
     font-size:12px;
     text-align:left;
+}
+.well{ padding: 15px 5px;}
+
+.billets{margin-left: 20px;
+        margin-right: 20px;
 }

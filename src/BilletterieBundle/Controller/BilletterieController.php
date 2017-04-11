@@ -6,16 +6,33 @@ use BilletterieBundle\Entity\commande;
 use BilletterieBundle\Form\commandeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class BilletterieController extends Controller
 {
     /**
      * @Route("/", name="home")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $commande = new  commande();
         $form =$this->createForm(commandeType::class, $commande);
+
+        $commande->setDateVisite(new \DateTime());
+
+        // Si la requête est un post
+        if ($request->isMethod('post')){
+            // On vérifie que les valeurs entrées sont correctes
+            $form->handleRequest($request);
+
+            //Vérification des valeurs
+            if ($form->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($commande);
+                $em->flush();
+            }
+            return $this->redirectToRoute('home');
+        }
 
         return $this->render('BilletterieBundle:Order:index.html.twig', array(
             'form' => $form->createView()
