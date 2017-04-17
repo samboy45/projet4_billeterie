@@ -47,7 +47,7 @@ $(document).ready(function () {
     // la fonction qui ajoute un lien de suppression
     function addDeleteLink($prototype) {
         // Création du lien
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+        var $deleteLink = $('<a href="#" class="btn red">Supprimer</a>');
 
         // Ajout du lien
         $prototype.append($deleteLink);
@@ -60,4 +60,10 @@ $(document).ready(function () {
             return false;
         });
     }
+});
+
+
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
 });

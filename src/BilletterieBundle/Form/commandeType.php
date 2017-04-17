@@ -21,14 +21,17 @@ class commandeType extends AbstractType
         $builder
             ->add('dateVisite', DateType::class, array(
                 'label' => 'Date de visite',
-                'html5' => false,
-                'attr' => ['class' => 'datepicker'],
+                'widget' => 'single_text',
+                'html5' => false
             ))
             ->add('typeBillet', ChoiceType::class, array(
                 'label' => 'Type de billet',
                 'choices' => array(
                     'journée' => 'journée',
                     'demie-journée' => 'demi-journée'
+                ),
+                'attr'=>array(
+                    'class'=>'input-field col s12'
                 )
             ))
             ->add('billets', CollectionType::class, array(
@@ -43,7 +46,7 @@ class commandeType extends AbstractType
             ))
             ->add('valider', SubmitType::class, array(
                 'label' => 'Valider la commande',
-                'attr' => array('class' => 'btn-success')
+                'attr' => array('class' => 'btn green')
             ));
     }
     

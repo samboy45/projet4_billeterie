@@ -5,7 +5,7 @@ body { background-size: cover }
 a {
     -webkit-transition:all 0.2s linear;
     transition:all 0.2s linear;
-    color:#c82d00;
+    color:#dd2c00 ;
 }
 a:hover, a:focus, a:active {
     color:#7e1d01;
@@ -15,7 +15,7 @@ a:hover, a:focus, a:active {
 .link {
     -webkit-transition:all 0.2s linear;
     transition:all 0.2s linear;
-    color:#c82d00;
+    color:#dd2c00 ;
     cursor:pointer;
 }
 .link:hover { color:#7e1d01; }
@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
     margin:25px 0 0;
 }
 #backlink {
-    background:#c82d00 url("../images/backlink_bg.png") no-repeat;
+    background:#dd2c00  url("../images/backlink_bg.png") no-repeat;
     float:right;
     padding:2px 2px 2px 30px;
 }
@@ -62,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
     margin:5px 5px 0 10px;
 }
 #header_bottom {
-    background:#c82d00;
+    background:#dd2c00 ;
     padding:5px 10px;
 }
 #header_bottom span {
@@ -73,7 +73,6 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (max-width:800px) {
     #header_top h1 {
         font-size:25px;
-        margin:30px 0 0;
     }
 }
 
@@ -98,11 +97,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom:20px;
     padding:5px 20px;
 }
-#center_column .well .title {
-    background:none;
-    color:inherit;
-    padding:0;
-}
+
 #right_column {
     background:#222;
     position:absolute;
@@ -119,8 +114,8 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 #right_column_top {
-    background:#c82d00;
-    padding:15px 20px 50px;
+    background:#dd2c00 ;
+    padding:20px 20px 50px;
 }
 #right_column_bottom { padding-top: 50%;}
 #right_column_bottom {text-align: center}
@@ -203,37 +198,22 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #fff;
     border: 1px solid #23C0D7;
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 20px;
 }
 
 #add_billet:hover {
     color: #fff;
     background-color: #23C0D7;
     border: 1px solid #fff;
+
 }
 
-
-.form-group {
-    margin-left:5px;
-    margin-right:5px;
-    margin-bottom:20px;
-}
-.form-control {
-    width:auto;
-    max-width:170px;
-}
 
 .help-block {
     clear:left;
     margin:0;
 }
 
-
-.control-label {
-    font-size:12px;
-    text-align:left;
-}
-.well{ padding: 15px 5px;}
 
 .billets{margin-left: 20px;
         margin-right: 20px;

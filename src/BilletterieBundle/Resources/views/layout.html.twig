@@ -7,12 +7,13 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('bundles/billetterie/css/billetterie.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/billetterie/css/materialize.css') }}">
     {% endblock %}
 </head>
 
 <body style="background:url('{{ asset('bundles/billetterie/images/louvre-gris.jpeg') }}');">
 <div class="container">
-    <header id="header" class="clearfix">
+    <header id="header" >
         <div id="header_top" class="clearfix">
             <div id="backlink">
                 <a href="" title="Revenir sur le site web du musée">Retour site web<span class="glyphicon glyphicon-play"></span></a>
@@ -92,6 +93,7 @@
 
 {% block javascripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{{ asset('bundles/billetterie/js/materialize.js') }}"></script>
 {% endblock %}
 </body>
 </html>

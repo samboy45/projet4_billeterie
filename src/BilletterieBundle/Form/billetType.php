@@ -19,26 +19,27 @@ class billetType extends AbstractType
     {
         $builder
             ->add('nomVisiteur', TextType::class, array(
-                'label' => 'Nom'
+                'label' => 'Nom',
             ))
             ->add('prenomVisiteur', TextType::class, array(
                 'label' => 'Prénom'
             ))
             ->add('visiteurPays', CountryType::class, array(
                 'label' => 'Pays',
-                'placeholder' => 'Choisissez votre pays'
+                'label_attr' => array( 'class' => 'hidden'),
+                'placeholder' => 'Choisissez votre pays',
+                'attr'=>array(
+                    'class'=> 'browser-default','input-field col s12'
+                )
             ))
             ->add('visiteurDateNaissance', BirthdayType::class, array(
                 'label' => 'Date de naissance',
-                'placeholder' => array(
-                    'day' => 'Jour',
-                    'month' => 'Mois',
-                    'year' => 'Année'
-                )
-            ))
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy'
+                ))
             ->add('tarifReduit', CheckboxType::class, array(
                 'label' => 'Tarif réduit ( Sur présentaion d\'un justificatif à l\'entrée )',
-                'required' => false
+                'required' => false,
             ));
     }
     
