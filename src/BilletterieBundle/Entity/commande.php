@@ -53,19 +53,18 @@ class commande
 
     /**
      * @var string
-     *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(message="Adresse E-mail invalide")
+     * @Assert\NotBlank(message="Veuillez renseigner votre adresse E-mail")
      */
     private $email;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="date_commande", type="date")
-     * @Assert\Email(message="Adresse E-mail invalide")
-     * @Assert\NotBlank(message="Veuillez renseigner votre adresse E-mail")
      */
     private $dateCommande;
+
 
     private $prixTotale;
 

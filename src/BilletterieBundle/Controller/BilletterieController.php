@@ -18,10 +18,10 @@ class BilletterieController extends Controller
         $commande = new  commande();
         $form =$this->createForm(commandeType::class, $commande);
 
-        $commande->setDateVisite(new \DateTime());
+
 
         // Si la requête est un post
-        if ($request->isMethod('post')){
+        if ($request->isMethod('POST')){
             // On vérifie que les valeurs entrées sont correctes
             $form->handleRequest($request);
 
@@ -30,12 +30,14 @@ class BilletterieController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($commande);
                 $em->flush();
+
+                $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                return $this->redirectToRoute('home');
             }
-            return $this->redirectToRoute('home');
         }
 
         return $this->render('BilletterieBundle:Order:index.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
