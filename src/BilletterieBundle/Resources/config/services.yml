@@ -2,6 +2,3 @@ services:
 #    billetterie.example:
 #        class: BilletterieBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
-
-    BilletterieBundle.holidays:
-        class: Services\Holidays

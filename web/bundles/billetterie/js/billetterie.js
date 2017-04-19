@@ -79,12 +79,21 @@ $('.datepicker').pickadate({
 
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 2,
-    monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-    weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-    today: 'aujourd\'hui',
-    clear: 'effacer',
-    close:false,
-    formatSubmit: 'yyyy-mm-dd',
+    monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+    monthsShort: [ 'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec' ],
+    weekdaysFull: [ 'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
+    weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
+    today: 'Aujourd\'hui',
+    clear: 'Effacer',
+    close: false,
+    format: 'dd mmmm yyyy',
+    formatSubmit: 'yyyy/mm/dd',
+    labelMonthNext:"Mois suivant",
+    labelMonthPrev:"Mois précédent",
+    labelMonthSelect:"Sélectionner un mois",
+    labelYearSelect:"Sélectionner une année",
+
+
     // An integer (positive/negative) sets it relative to today.
     min: true,
     // `true` sets it to today. `false` removes any limits.
@@ -92,6 +101,7 @@ $('.datepicker').pickadate({
     firstDay: 1,
     disable: [
         2,7,
+        //Année courant
         new Date(year, 0, 1), //jour de l'an
         new Date(year, 4, 1), //fête du travail
         new Date(year, 4, 8), //8 mai 1945
@@ -104,7 +114,27 @@ $('.datepicker').pickadate({
         new Date(year, MoisPaques-1, JourPaques+1),//lundi de paques
         new Date(year, MoisPaques-1, JourPaques+39),//Ascension
         new Date(year, MoisPaques-1, JourPaques+49),//jourPaques
-        new Date(year, MoisPaques-1, JourPaques+50)//LundiPentecote
+        new Date(year, MoisPaques-1, JourPaques+50),//LundiPentecote
+        //Année suivante
+        new Date(year+1, 0, 1), //jour de l'an
+        new Date(year+1, 4, 1), //fête du travail
+        new Date(year+1, 4, 8), //8 mai 1945
+        new Date(year+1, 6, 14), //Fête nationale
+        new Date(year+1, 7, 15), //Assomption
+        new Date(year+1, 10, 1), //Toussaint
+        new Date(year+1, 10, 11), //Armistice
+        new Date(year+1, 11, 25), //Noel
+        new Date(year+1, MoisPaques-1, JourPaques),//Paques
+        new Date(year+1, MoisPaques-1, JourPaques+1),//lundi de paques
+        new Date(year+1, MoisPaques-1, JourPaques+39),//Ascension
+        new Date(year+1, MoisPaques-1, JourPaques+49),//jourPaques
+        new Date(year+1, MoisPaques-1, JourPaques+50)//LundiPentecote
 
-    ]
+    ],
+
+    onSet: function( arg ){
+        if ( 'select' in arg ){
+            this.close();
+        }
+    }
 });
