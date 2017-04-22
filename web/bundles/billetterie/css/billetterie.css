@@ -219,8 +219,9 @@ h1, h2, h3, h4, h5, h6 {
         margin-right: 20px;
 }
 
-
-
+/* ----------------------------------------
+   DATEPICKER
+   ---------------------------------------- */
  .picker__box {
     border: none;
     max-width: 100%;
@@ -258,8 +259,11 @@ h1, h2, h3, h4, h5, h6 {
 
 button.btn-flat:nth-child(1){ color: #dd2c00}
 
-.picker__nav--prev{background-color: #dd2c00}
-.picker__nav--next{background-color: #dd2c00 }
+.picker__nav--prev{background-color: #4e4e4e}
+.picker__nav--next{background-color: #4e4e4e }
 .picker__weekday-display{background-color:#4e4e4e }
 
-.btn-flat.picker__clear{color: white}
+.btn-flat.picker__clear{color: #fff}
+
+
+#billetteriebundle_commande_dateVisite_table>thead{background-color: #dd2c00}

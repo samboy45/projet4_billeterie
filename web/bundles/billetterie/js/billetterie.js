@@ -1,3 +1,8 @@
+
+/* ----------------------------------------
+ AJOUT ET SUPPRESSION DE BILLET
+ ---------------------------------------- */
+
 $(document).ready(function () {
     // récupération de la balise div contenant l'attribut data-prototype
 
@@ -62,9 +67,10 @@ $(document).ready(function () {
     }
 });
 
-/*
-Datepicker
- */
+/* ----------------------------------------
+ DATEPICKER
+ ---------------------------------------- */
+
 var maDate = new Date();
 var year = maDate.getFullYear();
 var G = year%19;
@@ -129,12 +135,5 @@ $('.datepicker').pickadate({
         new Date(year+1, MoisPaques-1, JourPaques+39),//Ascension
         new Date(year+1, MoisPaques-1, JourPaques+49),//jourPaques
         new Date(year+1, MoisPaques-1, JourPaques+50)//LundiPentecote
-
-    ],
-
-    onSet: function( arg ){
-        if ( 'select' in arg ){
-            this.close();
-        }
-    }
+    ]
 });
