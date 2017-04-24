@@ -1,0 +1,16 @@
+{% extends "@Billetterie/layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Récapitulatif de la commande{% endblock %}
+
+{% block top_column_h2 %}Récapitulatif de la commande{% endblock %}
+{% block top_column_desc %}Vérifiez votre commande et choisissez votre mode de paiement{% endblock %}
+
+{% block page %}
+    <div>
+        <h1>Billets</h1>
+
+        {% for billet in billets %}
+            {{ form_row(billet.nomVisiteur) }}
+            {{ form_row(billet.prenomVisiteur) }}
+    </div>
+{% endblock %}

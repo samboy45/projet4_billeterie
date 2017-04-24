@@ -2,6 +2,7 @@
 
 namespace BilletterieBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -13,6 +14,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class commande
 {
+
+
+    public function __construct()
+    {
+        $this->billets = new ArrayCollection();
+        $this->dateCommande = new \DateTime();
+        $this->dateVisite = new \DateTime();
+    }
+
     /**
      * @var int
      *
@@ -23,7 +33,7 @@ class commande
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="BilletterieBundle\Entity\billet", mappedBy="order", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="BilletterieBundle\Entity\billet", mappedBy="commande", cascade={"persist"})
      * @Assert\Valid()
      */
     private $billets;
@@ -61,7 +71,7 @@ class commande
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="date_commande", type="date")
+     * @ORM\Column(name="date_commande", type="datetime")
      */
     private $dateCommande;
 
@@ -230,5 +240,17 @@ class commande
     {
         $this->prixTotale = $prixTotale;
     }
+
+    public function addBillet(billet $billet){
+        $billet->addCommande($this);
+        $this->billets->add($billet);
+    }
+
+    public function removeBillet(billet $billet){
+
+        $this->billets->removeElement($billet);
+    }
+
+
 }
 

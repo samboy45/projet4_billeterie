@@ -39,6 +39,7 @@ class commandeType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' =>true,
                 'label' => 'Billets',
+                'by_reference' => false,
                 'label_attr' => array( 'class' => 'hidden')
             ))
             ->add('email', TextType::class, array(

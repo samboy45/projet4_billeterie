@@ -247,5 +247,12 @@ class billet
     {
         $this->commande = $commande;
     }
+
+    public function addCommande(commande $commande)
+    {
+        $this->setCommande($commande);
+
+    }
+
 }
 

@@ -17,23 +17,18 @@ class BilletterieController extends Controller
     {
         $commande = new  commande();
         $form =$this->createForm(commandeType::class, $commande);
-
+        $em = $this->getDoctrine()->getManager();
 
 
         // Si la requête est un post
-        if ($request->isMethod('POST')){
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
             // On vérifie que les valeurs entrées sont correctes
-            $form->handleRequest($request);
+            $this->get('Billetterie.BilletterieManager')->calculPrix($commande);
+            $this->get('Billetterie.BilletterieManager')->compteBillet($commande);
+            $em->persist($commande);
+            $em->flush();
 
-            //Vérification des valeurs
-            if ($form->isValid()){
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($commande);
-                $em->flush();
-
-                $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-                return $this->redirectToRoute('home');
-            }
+            return $this->redirectToRoute('validation', array('id' => $commande->getId()));
         }
 
         return $this->render('BilletterieBundle:Order:index.html.twig', array(
@@ -42,11 +37,14 @@ class BilletterieController extends Controller
     }
 
     /**
-     * @Route("/validation", name="validation")
+     * @Route("/validation/{id}", name="validation",  requirements={"id": "\d+"})
      */
-    public function validationAction()
+    public function validationAction(Request $request, commande $commande)
     {
-        return $this->render('BilletterieBundle:Order:validation.html.twig');
+        return $this->render('BilletterieBundle:Order:validation.html.twig', array(
+            'commande' => $commande,
+            'billets' => $commande->getBillets()
+        ));
     }
 
     /**
