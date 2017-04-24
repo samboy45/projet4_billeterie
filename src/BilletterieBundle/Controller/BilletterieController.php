@@ -4,6 +4,7 @@ namespace BilletterieBundle\Controller;
 
 use BilletterieBundle\Entity\commande;
 use BilletterieBundle\Form\commandeType;
+use BilletterieBundle\Services\BilletterieManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,12 +19,20 @@ class BilletterieController extends Controller
         $commande = new  commande();
         $form =$this->createForm(commandeType::class, $commande);
         $em = $this->getDoctrine()->getManager();
+        $billets = $commande->getBillets();
 
 
         // Si la requête est un post
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
             // On vérifie que les valeurs entrées sont correctes
-            $this->get('Billetterie.BilletterieManager')->calculPrix($commande);
+          foreach ($billets as $billet){
+              $dateOfBirth = $billet->getVisiteurDateNaissance();
+              $age = $dateOfBirth->diff(new \DateTime());
+              $reduction = $billet->getTarifReduit();
+              $typeBillet = $commande->getTypeBillet();
+              $prix =$this->get('Billetterie.BilletterieManager')->calculPrice($age->y,$reduction,$typeBillet);
+              $billet->setPrixBillet($prix);
+          }
             $this->get('Billetterie.BilletterieManager')->compteBillet($commande);
             $em->persist($commande);
             $em->flush();
@@ -41,6 +50,7 @@ class BilletterieController extends Controller
      */
     public function validationAction(Request $request, commande $commande)
     {
+
         return $this->render('BilletterieBundle:Order:validation.html.twig', array(
             'commande' => $commande,
             'billets' => $commande->getBillets()

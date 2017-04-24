@@ -10,7 +10,11 @@
         <h1>Billets</h1>
 
         {% for billet in billets %}
-            {{ form_row(billet.nomVisiteur) }}
-            {{ form_row(billet.prenomVisiteur) }}
+            <p>
+                {{ form_row(billet.nomVisiteur) }}
+                {{ form_row(billet.prenomVisiteur) }}
+                {% endfor %}
+            </p>
+
     </div>
 {% endblock %}
