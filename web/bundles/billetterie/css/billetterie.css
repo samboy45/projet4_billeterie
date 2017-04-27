@@ -267,3 +267,30 @@ button.btn-flat:nth-child(1){ color: #dd2c00}
 
 
 #billetteriebundle_commande_dateVisite_table>thead{background-color: #dd2c00}
+
+/* ----------------------------------------
+   VALIDATION
+   ---------------------------------------- */
+
+.bordered.highlight.responsive-table>thead>tr {
+    background-color: #dd2c00;
+    color: white;
+}
+
+.text-right.bold>h5 {
+    color: #ee2200;
+}
+
+.title>a {
+    margin-left: 30px;
+
+}
+
+.btn.btn-default.valider{
+    background-color: #ee2200;
+}
+
+.btn.btn-default.modif{
+    background-color: white;
+    color: black;
+}

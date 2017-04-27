@@ -19,11 +19,13 @@ class BilletterieController extends Controller
         $commande = new  commande();
         $form =$this->createForm(commandeType::class, $commande);
         $em = $this->getDoctrine()->getManager();
-        $billets = $commande->getBillets();
+
+
 
 
         // Si la requête est un post
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            $billets = $commande->getBillets();
             // On vérifie que les valeurs entrées sont correctes
           foreach ($billets as $billet){
               $dateOfBirth = $billet->getVisiteurDateNaissance();
@@ -50,11 +52,16 @@ class BilletterieController extends Controller
      */
     public function validationAction(Request $request, commande $commande)
     {
+        $price = ['0.00' => 'tarif enfant', '6.00' => 'de 4 à 12', '10.00' => 'tarif réduit', '12.00' => 'senior', '16.00' => 'tarif normal'];
 
+        $billets= $commande->getBillets();
         return $this->render('BilletterieBundle:Order:validation.html.twig', array(
             'commande' => $commande,
-            'billets' => $commande->getBillets()
+            'billets' => $billets,
+            'totale' => $commande->getPrixTotale(),
+            'price' => $price
         ));
+
     }
 
     /**

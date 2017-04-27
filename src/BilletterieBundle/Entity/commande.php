@@ -230,6 +230,12 @@ class commande
      */
     public function getPrixTotale()
     {
+        $billets = $this->getBillets();
+        $totale = 0;
+        foreach ($billets as $billet){
+            $totale = $totale + $billet->getPrixBillet();
+        }
+        $this->setPrixTotale($totale);
         return $this->prixTotale;
     }
 
