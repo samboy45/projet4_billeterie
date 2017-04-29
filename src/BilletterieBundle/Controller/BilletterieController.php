@@ -5,6 +5,7 @@ namespace BilletterieBundle\Controller;
 use BilletterieBundle\Entity\commande;
 use BilletterieBundle\Form\commandeType;
 use BilletterieBundle\Services\BilletterieManager;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,25 +21,9 @@ class BilletterieController extends Controller
         $form =$this->createForm(commandeType::class, $commande);
         $em = $this->getDoctrine()->getManager();
 
-
-
-
         // Si la requête est un post
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
-            $billets = $commande->getBillets();
-            // On vérifie que les valeurs entrées sont correctes
-          foreach ($billets as $billet){
-              $dateOfBirth = $billet->getVisiteurDateNaissance();
-              $age = $dateOfBirth->diff(new \DateTime());
-              $reduction = $billet->getTarifReduit();
-              $typeBillet = $commande->getTypeBillet();
-              $prix =$this->get('Billetterie.BilletterieManager')->calculPrice($age->y,$reduction,$typeBillet);
-              $billet->setPrixBillet($prix);
-          }
-            $this->get('Billetterie.BilletterieManager')->compteBillet($commande);
-            $em->persist($commande);
-            $em->flush();
-
+            $this->get('Billetterie.BilletterieManager')->traitement($commande,$em);
             return $this->redirectToRoute('validation', array('id' => $commande->getId()));
         }
 
@@ -47,13 +32,53 @@ class BilletterieController extends Controller
         ));
     }
 
+
+
+    /**
+     * @Route("/edit/{id}", name="edit",  requirements={"id": "\d+"})
+     */
+    public function editAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->getRepository('BilletterieBundle:commande')->find($id);
+
+        if (!$commande){
+            throw $this->createNotFoundException('pas de commande trouver pour l\'id ' . $id);
+        }
+
+        $originalBillets = new ArrayCollection();
+
+        foreach ($commande->getBillets() as $billet){
+            $originalBillets->add($billet);
+
+        }
+
+        $editForm = $this->createForm(commandeType::class, $commande);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()){
+            foreach ($originalBillets as $billet){
+                if (false === $commande->getBillets()->contains($billet)){
+                    $em->remove($billet);
+                }
+            }
+            $this->get('Billetterie.BilletterieManager')->traitement($commande,$em);
+            return $this->redirectToRoute('validation', array('id' => $commande->getId()));
+        }
+
+        return $this->render('BilletterieBundle:Order:index.html.twig', array(
+            'form' => $editForm->createView(), 'commande' => $commande
+        ));
+    }
+
     /**
      * @Route("/validation/{id}", name="validation",  requirements={"id": "\d+"})
      */
     public function validationAction(Request $request, commande $commande)
     {
-        $price = ['0.00' => 'tarif enfant', '6.00' => 'de 4 à 12', '10.00' => 'tarif réduit', '12.00' => 'senior', '16.00' => 'tarif normal'];
 
+        $price = $this->get('Billetterie.BilletterieManager')->tarif();
         $billets= $commande->getBillets();
         return $this->render('BilletterieBundle:Order:validation.html.twig', array(
             'commande' => $commande,

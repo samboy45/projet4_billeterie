@@ -54,12 +54,6 @@ class commande
      */
     private $typeBillet;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="nb_billet", type="integer")
-     */
-    private $nbBillet;
 
     /**
      * @var string
@@ -137,29 +131,6 @@ class commande
         return $this->typeBillet;
     }
 
-    /**
-     * Set nbBillet
-     *
-     * @param integer $nbBillet
-     *
-     * @return commande
-     */
-    public function setNbBillet($nbBillet)
-    {
-        $this->nbBillet = $nbBillet;
-
-        return $this;
-    }
-
-    /**
-     * Get nbBillet
-     *
-     * @return int
-     */
-    public function getNbBillet()
-    {
-        return $this->nbBillet;
-    }
 
     /**
      * Set email

@@ -137,3 +137,8 @@ $('.datepicker').pickadate({
         new Date(year+1, MoisPaques-1, JourPaques+50)//LundiPentecote
     ]
 });
+
+
+jQuery(function($){
+    $('.dateOfBirth').mask("99-99-9999",{placeholder:"JJ-MM-AAAA"});
+});

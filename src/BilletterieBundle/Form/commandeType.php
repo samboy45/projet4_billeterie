@@ -28,7 +28,7 @@ class commandeType extends AbstractType
                 'label' => 'Type de billet',
                 'choices' => array(
                     'journée' => 'journée',
-                    'demie-journée' => 'demi-journée'
+                    'demi-journée' => 'demi-journée'
                 ),
                 'attr'=>array(
                     'class'=>'input-field col s12'

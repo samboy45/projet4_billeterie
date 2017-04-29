@@ -35,7 +35,10 @@ class billetType extends AbstractType
             ->add('visiteurDateNaissance', BirthdayType::class, array(
                 'label' => 'Date de naissance',
                 'widget' => 'single_text',
-                'format' => 'dd-MM-yyyy'
+                'format' => 'dd-MM-yyyy',
+                'attr' =>array(
+                    'class' =>'dateOfBirth'
+                )
                 ))
             ->add('tarifReduit', CheckboxType::class, array(
                 'label' => 'Tarif réduit ( Sur présentaion d\'un justificatif à l\'entrée )',

@@ -45,12 +45,12 @@
                 </tr>
             {% endfor %}
             <tr>
-                <th colspan="3" class="text-right bold"><h5>Montant total de la commande : {{ totale }} €</h5></th>
+                <th colspan="3" class="text-right bold"><h5>Montant total de la commande : {{ totale|number_format(2) }} €</h5></th>
             </tr>
             </tbody>
         </table>
 
-    <div class="title">2.<a href="#" class="btn btn-default valider bold">Valider</a> <span style="margin-left: 15px">ou</span><a href="#" class="btn btn-default modif bold">Modifier votre commande</a></div>
+    <div class="title">2.<a href="#" class="btn btn-default valider bold">Valider</a> <span style="margin-left: 15px">ou</span><a href="{{ path('edit',{'id': commande.id}) }}" class="btn btn-default modif bold">Modifier votre commande</a></div>
 </div>
 
 {% endblock %}
