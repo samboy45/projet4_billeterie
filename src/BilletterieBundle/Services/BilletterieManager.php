@@ -74,7 +74,7 @@ class BilletterieManager
             '8.00' => 'Tarif enfant, 4 à 12 ans',
             '10.00' => 'Tarif réduit',
             '12.00' => 'Tarif senior, à partir de 60 ans',
-            '16.00' => 'Tarif réduit');
+            '16.00' => 'Tarif normal');
         return $tarif;
     }
 
