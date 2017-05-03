@@ -44,7 +44,7 @@ $(document).ready(function () {
 
         // ajoute le prototype modifié à la fin de la balise <div>
         $container.append($prototype);
-
+        $('.dateOfBirth').mask("99-99-9999",{placeholder:"JJ-MM-AAAA"});
         // on incrémente
         index++;
     }

@@ -10,4 +10,19 @@ namespace BilletterieBundle\Repository;
  */
 class commandeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findTicketsByDate($date){
+
+        $query = $this->createQueryBuilder('c')
+            ->select('SUM(c.nb_billets) as totalBillets')
+            ->groupBy('c.dateVisite :dateVisite')
+            ->setParameter('dateVisite', $date)
+            ->getQuery();
+
+        try {
+            $result = $query->getSingleScalarResult();
+        } catch (\Doctrine\ORM\NoResultException $exception){
+            $result =0;
+        }
+        return $result;
+    }
 }

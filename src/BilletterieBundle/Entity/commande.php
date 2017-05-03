@@ -5,6 +5,7 @@ namespace BilletterieBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use BilletterieBundle\Validator\DateVisite;
 
 /**
  * commande
@@ -44,6 +45,7 @@ class commande
      * @ORM\Column(name="date_visite", type="date")
      * @Assert\Date(message="Date invalide")
      * @Assert\NotBlank(message="Veuillez sélectionner une date de visite")
+     * @DateVisite()
      */
     private $dateVisite;
 
@@ -71,6 +73,12 @@ class commande
 
 
     private $prixTotale;
+
+    /**
+     * @var integer
+     * @ORM\Column(name="nb_billets", type="integer")
+     */
+    private $nb_billets;
 
 
     /**
@@ -229,5 +237,28 @@ class commande
     }
 
 
-}
 
+    /**
+     * Set nbBillets
+     *
+     * @param integer $nbBillets
+     *
+     * @return commande
+     */
+    public function setNbBillets($nbBillets)
+    {
+        $this->nb_billets = $nbBillets;
+
+        return $this;
+    }
+
+    /**
+     * Get nbBillets
+     *
+     * @return integer
+     */
+    public function getNbBillets()
+    {
+        return $this->nb_billets;
+    }
+}

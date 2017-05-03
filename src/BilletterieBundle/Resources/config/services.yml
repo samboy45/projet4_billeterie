@@ -4,3 +4,16 @@ services:
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
     Billetterie.BilletterieManager:
         class: BilletterieBundle\Services\BilletterieManager
+
+    Billetterie.Vacances:
+        class: BilletterieBundle\Services\Vacances
+
+    Billetterie.validator.dateVisite:
+        class: BilletterieBundle\Validator\DateVisiteValidator
+        arguments:
+           - "@doctrine.orm.entity_manager"
+           - "@Billetterie.Vacances"
+           - "%ticketslimit%"
+        tags:
+            - {name: validator.constraint_validator, alias: billetterie_dateVisite}
+

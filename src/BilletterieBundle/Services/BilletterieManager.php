@@ -11,6 +11,8 @@ namespace BilletterieBundle\Services;
 
 
 
+use BilletterieBundle\Entity\commande;
+
 class BilletterieManager
 {
     const A = 16;
@@ -60,6 +62,7 @@ class BilletterieManager
             $prix =$this->calculPrice($age->y,$reduction,$typeBillet);
             $billet->setPrixBillet($prix);
         }
+        $this->compteBillet($commande);
         $em->persist($commande);
         $em->flush();
 
@@ -78,4 +81,19 @@ class BilletterieManager
         return $tarif;
     }
 
+
+    /**
+     * @param commande $commande
+     * compte le nombre de billet dans une commande
+     */
+    public function compteBillet(commande $commande)
+    {
+        $totalBillets = 0;
+        $billets = $commande->getBillets();
+        foreach ($billets as $billet){
+            $nbBillets = count($billet);
+            $totalBillets += $nbBillets ;
+        }
+        $commande->setNbBillets($totalBillets);
+    }
 }
