@@ -6,6 +6,7 @@ use BilletterieBundle\Entity\commande;
 use BilletterieBundle\Form\commandeType;
 use BilletterieBundle\Services\BilletterieManager;
 use Doctrine\Common\Collections\ArrayCollection;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,9 +78,34 @@ class BilletterieController extends Controller
      */
     public function validationAction(Request $request, commande $commande)
     {
-
         $price = $this->get('Billetterie.BilletterieManager')->tarif();
         $billets= $commande->getBillets();
+
+        if ($request->isMethod('POST')) {
+            Stripe::setApiKey("sk_test_ujE3Mg2OxOUgvNVlXEzLcRG0");
+
+            // Get the credit card details submitted by the form
+            $token = $_POST['stripeToken'];
+
+            // Create a charge: this will charge the user's card
+            try {
+                \Stripe\Charge::create(array(
+                    "amount" => $commande->getPrixTotale() * 100, // Amount in cents
+                    "currency" => "eur",
+                    "source" => $token,
+                ));
+
+                $this->addFlash("success", "Bravo ça marche !");
+
+            } catch (\Stripe\Error\Card $e) {
+
+                $this->addFlash("error", "Snif ça marche pas :(");
+                return $this->redirectToRoute("validation", array('id' => $commande->getId()));
+                // The card has been declined
+            }
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('BilletterieBundle:Order:validation.html.twig', array(
             'commande' => $commande,
             'billets' => $billets,

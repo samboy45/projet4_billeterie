@@ -286,11 +286,11 @@ button.btn-flat:nth-child(1){ color: #dd2c00}
 
 }
 
-.btn.btn-default.valider{
-    background-color: #ee2200;
-}
 
-.btn.btn-default.modif{
-    background-color: white;
+.btn.btn-default{
+    background-color: #ee2200;
     color: black;
+}
+.btn.btn-default:hover{
+    background-color: #4e4e4e;
 }

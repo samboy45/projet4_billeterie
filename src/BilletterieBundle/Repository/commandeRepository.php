@@ -14,7 +14,8 @@ class commandeRepository extends \Doctrine\ORM\EntityRepository
 
         $query = $this->createQueryBuilder('c')
             ->select('SUM(c.nb_billets) as totalBillets')
-            ->groupBy('c.dateVisite :dateVisite')
+            ->groupBy('c.dateVisite')
+            ->where('c.dateVisite = :dateVisite')
             ->setParameter('dateVisite', $date)
             ->getQuery();
 
