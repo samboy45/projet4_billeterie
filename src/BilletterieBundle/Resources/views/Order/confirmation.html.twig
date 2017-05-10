@@ -1,0 +1,15 @@
+{% extends "@Billetterie/layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Confirmation de la commande{% endblock %}
+
+{% block top_column_h2 %}Confirmation de la commande{% endblock %}
+{% block top_column_p %}Votre commande à été traité avec succès  <i class="material-icons">done</i>{% endblock %}
+
+{% block center_column %}
+    <div class="title">Confirmation de commande</div>
+    {% for message in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

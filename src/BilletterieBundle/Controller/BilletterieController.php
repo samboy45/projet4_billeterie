@@ -82,28 +82,18 @@ class BilletterieController extends Controller
         $billets= $commande->getBillets();
 
         if ($request->isMethod('POST')) {
-            Stripe::setApiKey("sk_test_ujE3Mg2OxOUgvNVlXEzLcRG0");
 
-            // Get the credit card details submitted by the form
-            $token = $_POST['stripeToken'];
-
-            // Create a charge: this will charge the user's card
-            try {
-                \Stripe\Charge::create(array(
-                    "amount" => $commande->getPrixTotale() * 100, // Amount in cents
-                    "currency" => "eur",
-                    "source" => $token,
-                ));
-
+            $payement = $this->get('Billetterie.StripeService')->payementCommande($commande);
+            if ($payement ==  "validate"){
                 $this->addFlash("success", "Bravo ça marche !");
-
-            } catch (\Stripe\Error\Card $e) {
-
+                $this->get('Billetterie.MailService')->sendMail($commande);
+                return $this->redirectToRoute('confirmation', array('id' => $commande->getId()));
+            } else{
                 $this->addFlash("error", "Snif ça marche pas :(");
                 return $this->redirectToRoute("validation", array('id' => $commande->getId()));
                 // The card has been declined
             }
-            return $this->redirectToRoute('home');
+
         }
 
         return $this->render('BilletterieBundle:Order:validation.html.twig', array(
@@ -116,7 +106,7 @@ class BilletterieController extends Controller
     }
 
     /**
-     * @Route("/confirmation", name="confirmation")
+     * @Route("/confirmation/{id}", name="confirmation",  requirements={"id": "\d+"})
      */
     public function confirmationAction()
     {
