@@ -24,10 +24,15 @@ class BilletterieController extends Controller
 
         // Si la requête est un post
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
-            $this->get('Billetterie.BilletterieManager')->traitement($commande,$em);
-            return $this->redirectToRoute('validation', array('id' => $commande->getId()));
+            $verifBillet = $this->get('Billetterie.BilletterieManager')->verifTypeBillet($commande);
+            if ($verifBillet == "echec"){
+                $this->addFlash("error", 'Vous ne pouvez pas commander de billet journée à partir de 14H.');
+                return $this->redirectToRoute('home');
+            }else{
+                $this->get('Billetterie.BilletterieManager')->traitement($commande,$em);
+                return $this->redirectToRoute('validation', array('id' => $commande->getId()));
+            }
         }
-
         return $this->render('BilletterieBundle:Order:index.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -82,27 +87,22 @@ class BilletterieController extends Controller
         $billets= $commande->getBillets();
 
         if ($request->isMethod('POST')) {
-
             $payement = $this->get('Billetterie.StripeService')->payementCommande($commande);
             if ($payement ==  "validate"){
-                $this->addFlash("success", "Bravo ça marche !");
+                $this->addFlash("success", "Félicitations, votre commande a bien été enregistrée !");
                 $this->get('Billetterie.MailService')->sendMail($commande);
                 return $this->redirectToRoute('confirmation', array('id' => $commande->getId()));
-            } else{
-                $this->addFlash("error", "Snif ça marche pas :(");
+            } else{// The card has been declined
+                $this->addFlash("error", "Un problème est survenus lors du paiement de la commande, merci de réessayer:(");
                 return $this->redirectToRoute("validation", array('id' => $commande->getId()));
-                // The card has been declined
             }
-
         }
-
         return $this->render('BilletterieBundle:Order:validation.html.twig', array(
             'commande' => $commande,
             'billets' => $billets,
             'totale' => $commande->getPrixTotale(),
             'price' => $price
         ));
-
     }
 
     /**

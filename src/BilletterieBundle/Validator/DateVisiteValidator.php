@@ -9,6 +9,7 @@
 namespace BilletterieBundle\Validator;
 
 
+use BilletterieBundle\Entity\commande;
 use BilletterieBundle\Services\Vacances;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;

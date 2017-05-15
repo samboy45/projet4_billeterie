@@ -1,0 +1,23 @@
+{% extends "@Billetterie/layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Infos{% endblock %}
+{% block top_column_h2 %}Horaires et Tarifs {% endblock %}
+{% block center_column %}
+    <div class="title">Horaires</div>
+    <div class="content">
+        <p>- Le musée est ouvert tous les jours de 9h à 18h excepté le mardi et le dimanche (fermeture des salles à partir de 17h30)</p>
+        <p>- Le musée est ouvert en nocturne jusqu'à 22h le mercredi et le vendredi (fermeture des salles à partir de 21h30)</p>
+    </div>
+
+    <div class="title">Tarifs</div>
+    <div class="content">
+        <p>Billets valables uniquement pour la date sélectionnée, pour le musée du Louvre.</p>
+        <ul>
+            <li><span class="bold">Tarif enfant (moins de 4 ans) :</span> gratuit</li>
+            <li><span class="bold">Tarif enfant (de 4 ans à 12 ans) :</span> 8.00 €</li>
+            <li><span class="bold">Tarif normal :</span> 16.00 €</li>
+            <li><span class="bold">Tarif senior (à partir de 60 ans) :</span> 12.00 €</li>
+            <li><span class="bold">Tarif réduit (sur présentation d'un justificatif) :</span> 10.00 €</li>
+        </ul>
+    </div>
+{% endblock %}

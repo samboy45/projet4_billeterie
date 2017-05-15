@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use BilletterieBundle\Validator\DateVisite;
+use BilletterieBundle\Validator\TypeBillet;
 
 /**
  * commande

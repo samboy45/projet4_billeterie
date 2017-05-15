@@ -30,9 +30,6 @@ h1, h2, h3, h4, h5, h6 {
 .content a, .content .link { font-weight:700; }
 .content ul { margin-top:10px; }
 .cgv p, .cgv ul { font-size:12px; }
-@media screen and (max-width:800px) {
-    .space { margin-bottom:10px; }
-}
 
 /* ----------------------------------------
    HEADER
@@ -293,4 +290,20 @@ button.btn-flat:nth-child(1){ color: #dd2c00}
 }
 .btn.btn-default:hover{
     background-color: #4e4e4e;
+}
+
+.btn-default.btn.retour{
+    margin-top: 30px;
+    width: 100%;
+}
+/* ----------------------------------------
+   Conctact
+   ---------------------------------------- */
+
+#contact {
+    padding: 0 32px 32px;
+}
+
+#contacts{
+    padding: 1.875em 0 1.875em 5.32545%;
 }

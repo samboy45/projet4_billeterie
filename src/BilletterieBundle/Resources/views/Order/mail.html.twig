@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+
+<body>
+<div>
+    <img src="{{ asset('bundles/billetterie/images/logo.jpg') }}"/>
+    <h1>Musée du Louvre</h1>
+</div>
+
+<div >
+    <h2>Confirmation de commande</h2>
+    <p>Ce mail fait office de billet. Imprimez-le et présentez-le à l'entrée lors de votre visite.</p>
+    <p>Code réservation :RESERVATION{{ commande.id}}</p>
+</div>
+<table class="bordered highlight responsive-table ">
+    <thead>
+    <tr>
+        <th>Désignation</th>
+        <th>Détail des billets</th>
+        <th class="text-right">Prix unitaire</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for billet in billets %}
+        <tr>
+            <td>
+                <p class="bold">
+                    {% if commande.typeBillet == "journée" %}
+                        Billet journée
+                    {% else %}
+                        Billet demi-journée
+                    {% endif %}
+                </p>
+                <p>
+                    <span class="bold">Date de visite :</span> {{ commande.dateVisite|date('d/m/y') }}
+                </p>
+            </td>
+            <td>
+                {{ billet.prenomVisiteur|upper }} {{ billet.nomVisiteur|capitalize }}
+                <span class="bold">
+						({{price[billet.PrixBillet]}})
+                        </span>
+            </td>
+            <td class="text-right bold">
+                {{ billet.PrixBillet }} €
+            </td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <th colspan="3" class="text-right bold"><h5>Montant total de la commande : {{ totale|number_format(2) }} €</h5></th>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+    <span>Musée du Louvre © 2017 Tous droits réservés</span>
+</div>
+</body>
+</html>

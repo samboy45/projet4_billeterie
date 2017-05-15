@@ -37,7 +37,7 @@ class MailService
                 'commande' => $commande,
                 'billets' => $commande->getBillets(),
                 'totale' => $commande->getPrixTotale(),
-                'tarif' => $tarif
+                'price' => $tarif
             )));
 
         $this->mailer->send($message);

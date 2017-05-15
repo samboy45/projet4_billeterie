@@ -96,4 +96,23 @@ class BilletterieManager
         }
         $commande->setNbBillets($totalBillets);
     }
+
+    /*
+     * vérifie l'achat d'un billet journée après 14h
+     */
+    public function  verifTypeBillet($commande)
+    {
+
+        $typeBillet = $commande->getTypeBillet();
+        $dateReservation = $commande->getDateCommande()->getTimestamp();
+        $heure = date( "H",$dateReservation);
+
+        if ($typeBillet == "journée" && $heure >= '14'){
+            $reponse = "echec";
+
+        }else{
+            $reponse = "ok";
+        }
+        return $reponse ;
+    }
 }
