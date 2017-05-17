@@ -20,13 +20,11 @@ class DateVisiteValidator extends ConstraintValidator
 
     private $vacances;
     private $em;
-    private $ticketslimit ;
 
-    public function __construct( EntityManagerInterface $em, Vacances $vacances,$ticketslimit)
+    public function __construct( EntityManagerInterface $em, Vacances $vacances)
     {
         $this->vacances = $vacances;
         $this->em = $em;
-        $this->ticketslimit = $ticketslimit;
     }
     /**
      * Checks if the passed value is valid.
@@ -36,6 +34,7 @@ class DateVisiteValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
+
         //$today = date("Y-m-d",mktime(0, 0, 0, date('m'), date('d'), date('Y')));
         //$nextYear = date("Y-m-d",mktime(0, 0, 0, date('m'), date('d'), date('Y')+1));
         $today = new \Datetime('-1 day');
@@ -48,7 +47,7 @@ class DateVisiteValidator extends ConstraintValidator
         $joursVisite = date('l', $value->getTimestamp());
 
         $totaBillets = $this->em->getRepository('BilletterieBundle:commande')->findTicketsByDate($value);
-        $maxBillets = $this->ticketslimit;
+        $maxBillets = 1000;
 
         if (in_array($value, $vacances) ||
             $value < $today ||

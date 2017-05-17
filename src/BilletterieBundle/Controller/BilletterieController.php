@@ -93,7 +93,7 @@ class BilletterieController extends Controller
                 $this->get('Billetterie.MailService')->sendMail($commande);
                 return $this->redirectToRoute('confirmation', array('id' => $commande->getId()));
             } else{// The card has been declined
-                $this->addFlash("error", "Un problème est survenus lors du paiement de la commande, merci de réessayer:(");
+              $this->addFlash("error", "Un problème est survenus lors du paiement de la commande, merci de réessayer:(");
                 return $this->redirectToRoute("validation", array('id' => $commande->getId()));
             }
         }

@@ -13,7 +13,6 @@ services:
         arguments:
            - "@doctrine.orm.entity_manager"
            - "@Billetterie.Vacances"
-           - "%ticketslimit%"
         tags:
             - {name: validator.constraint_validator, alias: billetterie_dateVisite}
 
@@ -29,4 +28,3 @@ services:
 
     Billetterie.StripeService:
         class: BilletterieBundle\Services\StripeService
-        arguments: ['%stripekey%']
