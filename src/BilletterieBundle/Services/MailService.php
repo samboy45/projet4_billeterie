@@ -30,7 +30,7 @@ class MailService
 
         $message
             ->setSubject('Confirmation de commande')
-            ->setFrom(array('john@doe.com' => 'Musée du Louvre'))
+            ->setFrom(array('samboydu45@gmail.com' => 'Musée du Louvre'))
             ->setTo($commande->getEmail())
             ->setContentType('text/html')
             ->setBody($this->twig->render('BilletterieBundle:Order:mail.html.twig', array(
