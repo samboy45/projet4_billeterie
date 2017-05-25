@@ -104,10 +104,11 @@ class BilletterieManager
     {
 
         $typeBillet = $commande->getTypeBillet();
-        $dateReservation = $commande->getDateCommande()->getTimestamp();
-        $heure = date( "H",$dateReservation);
+        $dateReservation = date('d',$commande->getDateCommande()->getTimestamp());
+       $heure = date( "H",$dateReservation);
+        $today = date("d");
 
-        if ($typeBillet == "journée" && $heure >= '14'){
+  if ($typeBillet == "journée" && $dateReservation == $today && $heure >= 14){
             $reponse = "echec";
 
         }else{

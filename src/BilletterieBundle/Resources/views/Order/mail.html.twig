@@ -1,12 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
+<head>
+    <style>
+        .contenu {
+            background-color: #ffffff;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 50px;
+            border-top: 5px solid #C82D00;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+        }
+        table, th, td {
+            border: 1px solid #C82D00;
+        }
+        table {
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        body{ border:1px solid #222;color:#333 }
+    </style>
+</head>
 
 <body>
-<div>
-    <img src="{{ asset('bundles/billetterie/images/logo.jpg') }}"/>
-    <h1>Musée du Louvre</h1>
+<div class="contenu">
+<div class="title">
+    <h1><img src="{{ asset('bundles/billetterie/images/logo.jpg') }} " style="margin-right:50px">Musée du Louvre</h1>
 </div>
-
 <div >
     <h2>Confirmation de commande</h2>
     <p>Ce mail fait office de billet. Imprimez-le et présentez-le à l'entrée lors de votre visite.</p>
@@ -39,8 +60,12 @@
             <td>
                 {{ billet.prenomVisiteur|upper }} {{ billet.nomVisiteur|capitalize }}
                 <span class="bold">
-						({{price[billet.PrixBillet]}})
-                        </span>
+                        {% if commande.typeBillet == "journée" %}
+                            ({{price[billet.PrixBillet]}})
+                        {% else %}
+                            (Tarif demi-journée)
+                        {% endif %}
+                  </span>
             </td>
             <td class="text-right bold">
                 {{ billet.PrixBillet }} €
@@ -55,6 +80,7 @@
 
 <div>
     <span>Musée du Louvre © 2017 Tous droits réservés</span>
+</div>
 </div>
 </body>
 </html>

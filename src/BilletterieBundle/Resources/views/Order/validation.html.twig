@@ -42,7 +42,11 @@
                     <td>
                         {{ billet.prenomVisiteur|upper }} {{ billet.nomVisiteur|capitalize }}
                         <span class="bold">
+                            {% if commande.typeBillet == "journée"  %}
 						({{price[billet.PrixBillet]}})
+                                {% else %}
+                                ( Tarif demi-journée)
+                            {% endif %}
                         </span>
                     </td>
                     <td class="text-right bold">
